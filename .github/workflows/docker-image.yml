@@ -18,13 +18,8 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-    - name: Set up Docker Buildx
-      uses: docker/build-push-action@v2
-      with:
-        context: ./
-        file: ./Dockerfile
-        builder: ${{ steps.buildx.outputs.name }}
-        push: true
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/small-alpine-lbp:latest
-        cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/small-alpine-lbp:buildcache
-        cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/small-alpine-lbp:buildcache,mode=max
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ericaclbp/small-alpine-lbp:$(date +%s)
+    - name: Push Docker image to registry
+      run: docker push ericaclbp/small-alpine-lbp:$(date +%s)
