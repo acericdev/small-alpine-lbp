@@ -19,6 +19,6 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile -t ericaclbp/small-alpine-lbp:$GITHUB_RUN_ID
+      run: docker build . --file Dockerfile -t ericaclbp/small-alpine-lbp:latest
     - name: Push Docker image to registry
-      run: docker push ericaclbp/small-alpine-lbp:$GITHUB_RUN_ID
+      run: docker push ericaclbp/small-alpine-lbp:latest
