@@ -20,6 +20,6 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ericaclbp/small-alpine-lbp:$(date +%s)
+      run: docker build . --file Dockerfile -t ericaclbp/small-alpine-lbp:$(date +%s)
     - name: Push Docker image to registry
       run: docker push ericaclbp/small-alpine-lbp:$(date +%s)
