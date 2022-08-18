@@ -4,4 +4,4 @@ RUN apk add openssh-client \
             ca-certificates \
             bash
 RUN mkdir -p ~/.ssh && chmod 700 ~/.ssh && \
-    echo -e "Host *\n\tStrictHostKeyChecking no\nHostKeyAlgorithms ssh-rsa\nPubkeyAcceptedKeyTypes ssh-rsa\n\n" > ~/.ssh/config
+    echo -e "HostKeyAlgorithms ssh-rsa\nPubkeyAcceptedKeyTypes ssh-rsa\nHost *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
